@@ -119,7 +119,7 @@ public class RecoverMessageServiceImpl implements IRecoverMessageService {
 
         // 多长时间未确认
         condition.setCreateEndTime(DateFormatUtils.formatDateTime(endTime));
-        // 消息状态为待确认
+        // 消息状态为发送中
         condition.setStatus(MessageStatusEnum.SENDING.getValue());
         // 消息未死亡
         condition.setAlreadyDead(AlreadyDeadEnum.NO.getValue());
