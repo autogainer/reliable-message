@@ -5,11 +5,19 @@ import com.cn.rmq.api.cms.model.dto.DataGrid;
 import com.cn.rmq.api.cms.model.dto.system.SysResourceDTO;
 import com.cn.rmq.api.service.IBaseService;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
  * <p>资源服务接口</p>
  */
+@Path("ISysResourceService")
+@Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
+@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
 public interface ISysResourceService extends IBaseService<SysResource, String> {
 
     /**
@@ -17,6 +25,8 @@ public interface ISysResourceService extends IBaseService<SysResource, String> {
      *
      * @param resourceReq 查询条件
      */
+    @GET
+    @Path("/selectByConditionPage")
     DataGrid selectByConditionPage(SysResourceDTO resourceReq);
 
     /**

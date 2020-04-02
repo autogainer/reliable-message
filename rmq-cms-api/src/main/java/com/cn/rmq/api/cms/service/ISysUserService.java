@@ -7,11 +7,19 @@ import com.cn.rmq.api.cms.model.dto.system.SysResourceDTO;
 import com.cn.rmq.api.cms.model.dto.system.SysUserDTO;
 import com.cn.rmq.api.service.IBaseService;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
  * 系统用户服务接口
  */
+@Path("ISysUserService")
+@Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
+@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
 public interface ISysUserService extends IBaseService<SysUser, String> {
 
     /**
@@ -21,6 +29,8 @@ public interface ISysUserService extends IBaseService<SysUser, String> {
      * @param password 密码
      * @return {@link SysUser} 用户信息
      */
+    @GET
+    @Path("/selectByConditionPage")
     SysUser selectByUserNameAndPassWord(String username, String password);
 
     /**

@@ -6,16 +6,26 @@ import com.cn.rmq.api.cms.model.dto.DataGrid;
 import com.cn.rmq.api.cms.model.dto.system.SysRoleDTO;
 import com.cn.rmq.api.service.IBaseService;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
  * <p>角色服务接口</p>
  */
+@Path("ISysRoleService")
+@Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
+@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
 public interface ISysRoleService extends IBaseService<SysRole, String> {
 
     /**
      * <p>根据查询条件获取用户分页</p>
      */
+    @GET
+    @Path("/selectByConditionPage")
     DataGrid selectByConditionPage(SysRoleDTO model);
 
     /**

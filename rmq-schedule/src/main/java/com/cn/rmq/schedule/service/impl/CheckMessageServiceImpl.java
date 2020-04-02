@@ -123,7 +123,7 @@ public class CheckMessageServiceImpl implements ICheckMessageService {
                     log.info("【CheckTask】message confirm, messageId={}", message.getId());
                     rmqService.confirmAndSendMessage(message.getId());
                 } else {
-                    // data!=1，该消息不需要发送，直接删除
+                    // data!=1，该消息不需要发送，直接删除//TODO 如果这笔订单状态不确定如何处理没有流程？
                     log.info("【CheckTask】message delete, messageId={}, data={}", message.getId(), data);
                     messageService.deleteByPrimaryKey(message.getId());
                 }

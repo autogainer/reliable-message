@@ -5,11 +5,20 @@ import com.cn.rmq.api.cms.model.dto.message.CmsMessageListDto;
 import com.cn.rmq.api.model.po.Message;
 import com.cn.rmq.api.service.IBaseService;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 /**
  * 消息服务接口
  *
  * @author Chen Nan
  */
+@Path("ICmsMessageService")
+@Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
+@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
 public interface ICmsMessageService extends IBaseService<Message, String> {
 
     /**
@@ -18,6 +27,8 @@ public interface ICmsMessageService extends IBaseService<Message, String> {
      * @param req 查询条件
      * @return 数据列表
      */
+    @GET
+    @Path("/listPage")
     DataGrid listPage(CmsMessageListDto req);
 
     /**

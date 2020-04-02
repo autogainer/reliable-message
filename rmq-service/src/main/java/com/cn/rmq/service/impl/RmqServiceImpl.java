@@ -14,6 +14,9 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import java.time.LocalDateTime;
 
 /**
@@ -30,8 +33,9 @@ public class RmqServiceImpl extends BaseServiceImpl<MessageMapper, Message, Stri
     @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;
 
+
     @Override
-    public String createPreMessage(String consumerQueue, String messageBody) {
+    public String createPreMessage(String consumerQueue,String messageBody) {
         if (StringUtils.isBlank(consumerQueue)) {
             throw new CheckException("consumerQueue is empty");
         }
