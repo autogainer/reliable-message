@@ -11,7 +11,7 @@ import com.cn.rmq.api.model.dto.queue.QueueUpdateDto;
 import com.cn.rmq.api.service.IMessageService;
 import com.cn.rmq.api.service.IQueueService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;

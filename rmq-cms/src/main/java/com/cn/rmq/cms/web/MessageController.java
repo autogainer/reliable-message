@@ -9,7 +9,7 @@ import com.cn.rmq.api.model.dto.RspBase;
 import com.cn.rmq.api.model.po.Message;
 import com.cn.rmq.api.service.IMessageService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 

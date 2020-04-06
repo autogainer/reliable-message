@@ -7,7 +7,7 @@ import com.cn.rmq.api.cms.service.ISysResourceService;
 import com.cn.rmq.api.cms.service.ISysRoleService;
 import com.cn.rmq.api.cms.service.ISysUserService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Reference;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

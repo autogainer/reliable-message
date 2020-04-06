@@ -10,7 +10,7 @@ import com.cn.rmq.dal.mapper.QueueMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
+import com.alibaba.dubbo.config.annotation.Service;
 
 import java.util.List;
 

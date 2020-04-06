@@ -1,6 +1,8 @@
 package com.cn.rmq.api.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
+
 /**
  * 消息服务接口
  *
@@ -21,6 +23,8 @@ public interface IRmqService {
     @Path("/createPreMessage")
     String createPreMessage(@QueryParam("consumerQueue") String consumerQueue, @QueryParam("messageBody") String messageBody);
 
+    @GET
+    List<User> getUsers();
     /**
      * 确认发送消息
      *

@@ -1,10 +1,8 @@
 package com.cn.rmq.schedule.tasks;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.cn.rmq.api.schedule.service.ICheckMessageService;
-import com.cn.rmq.schedule.config.CheckTaskConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

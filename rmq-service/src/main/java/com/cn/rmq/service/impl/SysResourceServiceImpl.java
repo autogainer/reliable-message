@@ -9,7 +9,7 @@ import com.cn.rmq.dal.mapper.RoleResourceMapper;
 import com.cn.rmq.dal.mapper.SysResourceMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import org.apache.dubbo.config.annotation.Service;
+import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

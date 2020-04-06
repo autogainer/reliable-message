@@ -1,23 +1,23 @@
 package com.cn.rmq.service.impl;
 
 import cn.hutool.core.util.IdUtil;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.cn.rmq.api.enums.MessageStatusEnum;
 import com.cn.rmq.api.exceptions.CheckException;
 import com.cn.rmq.api.model.Constants;
 import com.cn.rmq.api.model.RmqMessage;
 import com.cn.rmq.api.model.po.Message;
 import com.cn.rmq.api.service.IRmqService;
+import com.cn.rmq.api.service.User;
 import com.cn.rmq.dal.mapper.MessageMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 消息服务实现
@@ -34,6 +34,11 @@ public class RmqServiceImpl extends BaseServiceImpl<MessageMapper, Message, Stri
     private JmsMessagingTemplate jmsMessagingTemplate;
 
 
+    @Override
+    public List<User> getUsers() {
+        System.out.println(">>> Client address from http servlet request: " );
+        return Arrays.asList(new User(1L, "User1"), new User(2L, "User2"));
+    }
     @Override
     public String createPreMessage(String consumerQueue,String messageBody) {
         if (StringUtils.isBlank(consumerQueue)) {

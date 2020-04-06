@@ -14,8 +14,8 @@ import com.cn.rmq.api.utils.DateFormatUtils;
 import com.cn.rmq.schedule.config.RecoverTaskConfig;
 import com.github.pagehelper.Page;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
-import org.apache.dubbo.config.annotation.Service;
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;

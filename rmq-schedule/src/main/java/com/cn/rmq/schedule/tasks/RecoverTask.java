@@ -2,7 +2,7 @@ package com.cn.rmq.schedule.tasks;
 
 import com.cn.rmq.api.schedule.service.IRecoverMessageService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

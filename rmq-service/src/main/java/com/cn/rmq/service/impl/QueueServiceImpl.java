@@ -1,6 +1,8 @@
 package com.cn.rmq.service.impl;
 
 import cn.hutool.core.util.IdUtil;
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.cn.rmq.api.cms.service.ICmsMessageService;
 import com.cn.rmq.api.exceptions.CheckException;
 import com.cn.rmq.api.model.Constants;
@@ -10,12 +12,9 @@ import com.cn.rmq.api.model.po.Queue;
 import com.cn.rmq.api.service.IQueueService;
 import com.cn.rmq.dal.mapper.QueueMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * 队列服务实现
