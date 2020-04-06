@@ -1,15 +1,16 @@
 package com.cn.rmq.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.cn.rmq.api.exceptions.CheckException;
 import com.cn.rmq.api.model.RmqMessage;
 import com.cn.rmq.api.model.po.Message;
 import com.cn.rmq.api.service.IMessageService;
+import com.cn.rmq.api.service.IRmqService;
 import com.cn.rmq.dal.mapper.MessageMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -23,13 +24,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class MessageServiceImpl extends BaseServiceImpl<MessageMapper, Message, String>
         implements IMessageService {
 
-    @Autowired
-    private JmsMessagingTemplate jmsMessagingTemplate;
+    @Reference
+    IRmqService iRmqService;
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
     public void resendMessage(Message message) {
-        log.info("【resendMessage】start, messageId={}", message.getId());
+        log.info("【重新投递】start, messageId={}", message.getId());
         // 增加重发次数
         mapper.addResendTimes(message.getId());
 
@@ -37,9 +38,10 @@ public class MessageServiceImpl extends BaseServiceImpl<MessageMapper, Message, 
         RmqMessage rmqMessage = new RmqMessage();
         rmqMessage.setMessageId(message.getId());
         rmqMessage.setMessageBody(message.getMessageBody());
-        jmsMessagingTemplate.convertAndSend(message.getConsumerQueue(), rmqMessage);
+        // 发送http消息
+        iRmqService.postMessage(rmqMessage);
 
-        log.info("【resendMessage】success, messageId={}", message.getId());
+        log.info("【重新投递】success, messageId={}", message.getId());
     }
 
     @Override
@@ -63,7 +65,8 @@ public class MessageServiceImpl extends BaseServiceImpl<MessageMapper, Message, 
         RmqMessage rmqMessage = new RmqMessage();
         rmqMessage.setMessageId(message.getId());
         rmqMessage.setMessageBody(message.getMessageBody());
-        jmsMessagingTemplate.convertAndSend(message.getConsumerQueue(), rmqMessage);
+        // 发送http消息
+        iRmqService.postMessage(rmqMessage);
 
         log.info("【resendMessageById】success, messageId={}", messageId);
     }
@@ -71,5 +74,10 @@ public class MessageServiceImpl extends BaseServiceImpl<MessageMapper, Message, 
     @Override
     public int updateMessageDead(Short resendTimes) {
         return mapper.updateMessageDead(resendTimes);
+    }
+
+    @Override
+    public int updateMessageDeadById(String id){
+        return mapper.updateMessageDeadById(id);
     }
 }

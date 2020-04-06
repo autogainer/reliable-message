@@ -97,12 +97,6 @@
                 <artifactId>pagehelper</artifactId>
                 <version>${pagehelper.version}</version>
             </dependency>
-            <!--ActiveMQ-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-activemq</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
 
             <!-- dubbo -->
             <dependency>

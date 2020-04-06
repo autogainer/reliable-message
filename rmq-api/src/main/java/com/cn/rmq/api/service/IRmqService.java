@@ -1,4 +1,6 @@
 package com.cn.rmq.api.service;
+import com.cn.rmq.api.model.RmqMessage;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -15,50 +17,68 @@ public interface IRmqService {
     /**
      * 创建预发送消息
      *
-     * @param consumerQueue 消费队列
-     * @param messageBody   消息内容
-     * @return 消息ID
+     * @param rmqMessage
+     * 需要上送以下两个字段
+     * private String messageBody;
+     * private String consumerQueue;
+     *
+     * @return messageId  消息ID
+     *
      */
-    @GET
+    @POST
     @Path("/createPreMessage")
-    String createPreMessage(@QueryParam("consumerQueue") String consumerQueue, @QueryParam("messageBody") String messageBody);
+    RmqMessage createPreMessage(RmqMessage rmqMessage);
 
-    @GET
-    List<User> getUsers();
+
     /**
      * 确认发送消息
-     *
-     * @param messageId 消息 ID
+     * @param rmqMessage
+     * 需要上送以下字段
+     * private String messageId;
      */
-    @GET
-    @Path("{id: \\d+}")
-    void confirmAndSendMessage(String messageId);
+    @POST
+    @Path("/confirmAndSendMessage")
+    void confirmAndSendMessage(RmqMessage rmqMessage);
 
     /**
      * 存储并发送消息
      *
-     * @param consumerQueue 消费队列
-     * @param messageBody   消息内容
+     * @param rmqMessage
+     * 需要上送以下两个字段
+     * private String messageBody;
+     * private String consumerQueue;
      */
-    @GET
-    @Path("{id: \\d+}")
-    void saveAndSendMessage(String consumerQueue, String messageBody);
+    @POST
+    @Path("/saveAndSendMessage")
+    void saveAndSendMessage(RmqMessage rmqMessage);
 
     /**
      * 直接发送消息
      *
-     * @param consumerQueue 消费队列
-     * @param messageBody   消息内容
+     * @param rmqMessage
+     * 需要上送以下两个字段
+     * private String messageBody;
+     * private String consumerQueue;
      */
-    @GET
-    @Path("{id: \\d+}")
-    void directSendMessage(String consumerQueue, String messageBody);
+    @POST
+    @Path("/directSendMessage")
+    void directSendMessage(RmqMessage rmqMessage);
 
     /**
      * 根据消息ID删除消息
-     * @param messageId 消息ID
+     * @param rmqMessage
+     * 需要上送以下字段
+     * private String messageId;
      */
-    @GET
-    @Path("{id: \\d+}")
-    void deleteMessageById(String messageId);
+    @POST
+    @Path("/deleteMessageById")
+    void deleteMessageById(RmqMessage rmqMessage);
+
+
+    /**
+     * http方式投递消息
+     *
+     * @param rmqMessage 消息信息
+     */
+    void postMessage(RmqMessage rmqMessage);
 }

@@ -27,6 +27,14 @@ public interface MessageMapper extends BaseMapper<Message, String> {
     int updateMessageDead(Short resendTimes);
 
     /**
+     * 标记所有重发次数超过限制的消息为已死亡
+     *
+     * @param id 消息ID
+     * @return 处理记录数量
+     */
+    int updateMessageDeadById(String id);
+
+    /**
      * CMS获取消息列表
      *
      * @param req 请求参数

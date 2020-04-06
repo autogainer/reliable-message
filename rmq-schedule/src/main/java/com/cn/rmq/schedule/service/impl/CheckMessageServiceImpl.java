@@ -7,6 +7,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.cn.rmq.api.enums.MessageStatusEnum;
 import com.cn.rmq.api.model.Constants;
+import com.cn.rmq.api.model.RmqMessage;
 import com.cn.rmq.api.model.po.Message;
 import com.cn.rmq.api.model.po.Queue;
 import com.cn.rmq.api.schedule.model.dto.ScheduleMessageDto;
@@ -121,7 +122,10 @@ public class CheckMessageServiceImpl implements ICheckMessageService {
                 if (data == 1) {
                     // data=1，该消息需要发送
                     log.info("【CheckTask】message confirm, messageId={}", message.getId());
-                    rmqService.confirmAndSendMessage(message.getId());
+
+                    RmqMessage rmqMessage = new RmqMessage();
+                    rmqMessage.setMessageId(message.getId());
+                    rmqService.confirmAndSendMessage(rmqMessage);
                 } else {
                     // data!=1，该消息不需要发送，直接删除//TODO 如果这笔订单状态不确定如何处理没有流程？
                     log.info("【CheckTask】message delete, messageId={}, data={}", message.getId(), data);

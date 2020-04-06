@@ -41,4 +41,12 @@ public interface IMessageService extends IBaseService<Message, String> {
      * @return 处理记录数量
      */
     int updateMessageDead(Short resendTimes);
+
+    /**
+     * 指定消息id已死亡
+     *
+     * @param id 消息ID
+     * @return 处理记录数量
+     */
+    int updateMessageDeadById(String id);
 }
